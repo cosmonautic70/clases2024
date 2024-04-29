@@ -10,9 +10,11 @@
 
     $.getJSON('https://api.themoviedb.org/3/person/190?api_key=45082c7b0f792bc71f372fbce1b42c61&language=es', function(data) {
         
-        var text = `Date: ${data.name}<br>
-                    Time: ${data.biography}<br>`
-        $(".resultados").html(text);
+        var los_datos = `<h3>${data.name}</h3>>
+                    <p>${data.biography}</p>`
+        
+        $(".resultados").html(los_datos);
+        
     });
 
 </script>
