@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Actor</title>
+</head>
+
+<body>
+    <h1>Ficha de Actor</h1>
+
+    <!-- Elementos HTML donde se mostrará la información del actor -->
+    <div id="actorInfo">
+        <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+        <p><strong>Fecha de nacimiento:</strong> <span id="fechaNacimiento"></span></p>
+        <p><strong>Lugar de nacimiento:</strong> <span id="lugarNacimiento"></span></p>
+        <p><strong>Biografía:</strong> <span id="biografia"></span></p>
+        <p><strong>Popularidad:</strong> <span id="popularidad"></span></p>
+        <img src id="foto"/>
+    </div>
+
+    <script>
+        // Reemplaza 'YOUR_API_KEY' con tu clave de API de TMDb
+        const apiKey = '45082c7b0f792bc71f372fbce1b42c61';
+
+        // ID del actor que deseas consultar
+        const actorId = 190;
+
+        // Función para obtener la ficha de un actor
+        async function obtenerFichaDeActor() {
+            // URL para obtener la ficha de un actor
+            const url = `https://api.themoviedb.org/3/person/${actorId}?api_key=${apiKey}&language=es-ES`;
+
+            try {
+                // Realizar la solicitud HTTP
+                const response = await fetch(url);
+
+                // Verificar si la respuesta es exitosa
+                if (!response.ok) {
+                    throw new Error(`Error al obtener la ficha del actor: ${response.statusText}`);
+                }
+
+                // Convertir la respuesta en JSON
+                const data = await response.json();
+
+                // Mostrar la información del actor en el cuerpo de la página
+                document.getElementById('nombre').innerText = data.name;
+                document.getElementById('fechaNacimiento').innerText = data.birthday;
+                document.getElementById('lugarNacimiento').innerText = data.place_of_birth;
+                document.getElementById('biografia').innerText = data.biography;
+                document.getElementById('popularidad').innerText = data.popularity;
+                document.getElementById('foto').src = "https://image.tmdb.org/t/p/w185/"+data.profile_path;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Llamar a la función para obtener la ficha del actor
+        obtenerFichaDeActor();
+    </script>
+</body>
+
+</html>
+
+
