@@ -35,6 +35,13 @@
   const apiKey = '45082c7b0f792bc71f372fbce1b42c61';
   const url = `https://api.themoviedb.org/3/person/${actorId}?api_key=${apiKey}&language=es-ES`;
 
+  if (actorId==='') {
+          console.log("El dato del actor está vacío");
+          var los_datos = 'No hay información que mostrar'
+          $(".resultados").html(los_datos);          
+  }
+  else {    
+
     $.getJSON(url, function(data) {
         
         var los_datos = `<h2>${data.name}</h2>
@@ -50,7 +57,7 @@
           var los_datos = 'No hay información que mostrar'
           $(".resultados").html(los_datos);          
       }
-
+  }
 </script>
 </head>
 <body>
