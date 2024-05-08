@@ -35,7 +35,7 @@
   const apiKey = '45082c7b0f792bc71f372fbce1b42c61';
   const url = `https://api.themoviedb.org/3/person/${actorId}?api_key=${apiKey}&language=es-ES`;
 
-    $.getJSON('https://api.themoviedb.org/3/person/190?api_key=45082c7b0f792bc71f372fbce1b42c61&language=es', function(data) {
+    $.getJSON(url, function(data) {
         
         var los_datos = `<h3>${data.name}</h3>
                     <p>${data.biography}</p>
